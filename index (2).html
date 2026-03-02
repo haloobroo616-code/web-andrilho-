@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GOJO • 1000 CARA DITERIMA CEWEK</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        body {
+            background: #0a0a1a;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+        
+        .chat-container {
+            width: 100%;
+            max-width: 450px;
+            height: 90vh;
+            background: #12102a;
+            border-radius: 30px;
+            border: 3px solid #ff3366;
+            box-shadow: 0 0 30px #ff3366;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        /* Header */
+        .chat-header {
+            background: #1a1740;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 3px solid #ff3366;
+        }
+        
+        .profile-emoji {
+            width: 70px;
+            height: 70px;
+            background: #ff3366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+            border: 3px solid gold;
+        }
+        
+        .header-info h1 {
+            color: white;
+            font-size: 1.6rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .header-info h1 i {
+            color: gold;
+        }
+        
+        .badge {
+            background: gold;
+            color: black;
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            margin-left: 5px;
+        }
+        
+        .status {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #aaa;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+        
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background: #0f0;
+            border-radius: 50%;
+        }
+        
+        /* Messages */
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: #0c0a20;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .message {
+            max-width: 85%;
+            padding: 12px 16px;
+            border-radius: 20px;
+            word-break: break-word;
+        }
+        
+        .gojo-message {
+            align-self: flex-start;
+            background: #1f1a3a;
+            border: 2px solid #ff3366;
+            border-bottom-left-radius: 5px;
+            color: white;
+        }
+        
+        .user-message {
+            align-self: flex-end;
+            background: #ff3366;
+            border: 2px solid gold;
+            border-bottom-right-radius: 5px;
+            color: white;
+        }
+        
+        .sender-name {
+            font-size: 0.7rem;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .gojo-message .sender-name {
+            color: gold;
+        }
+        
+        .user-message .sender-name {
+            color: white;
+            text-align: right;
+        }
+        
+        /* Tips box */
+        .tips-box {
+            background: #1a1740;
+            border: 3px solid gold;
+            border-radius: 20px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        
+        .tips-title {
+            color: gold;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid #ff3366;
+            padding-bottom: 10px;
+        }
+        
+        .tip-item {
+            background: #2a244a;
+            padding: 10px;
+            margin-bottom: 8px;
+            border-radius: 10px;
+            border-left: 4px solid #ff3366;
+            color: white;
+        }
+        
+        /* Flowers */
+        .flower-box {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px;
+            background: #1f1a3a;
+            border-radius: 40px;
+            margin: 10px 0;
+            border: 2px solid gold;
+        }
+        
+        .flower {
+            font-size: 2.5rem;
+        }
+        
+        /* Input */
+        .input-area {
+            padding: 15px;
+            background: #1a1740;
+            border-top: 3px solid #ff3366;
+            display: flex;
+            gap: 10px;
+        }
+        
+        #userInput {
+            flex: 1;
+            padding: 15px;
+            background: #0c0a20;
+            border: 2px solid #ff3366;
+            border-radius: 30px;
+            color: white;
+            font-size: 1rem;
+            outline: none;
+        }
+        
+        #userInput::placeholder {
+            color: #666;
+        }
+        
+        #sendBtn {
+            width: 60px;
+            height: 60px;
+            background: #ff3366;
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            border: 3px solid gold;
+        }
+        
+        #sendBtn:active {
+            transform: scale(0.9);
+        }
+        
+        /* Footer */
+        .footer {
+            padding: 15px;
+            text-align: center;
+            background: #0c0a20;
+            border-top: 2px solid #ff3366;
+        }
+        
+        .footer a {
+            color: gold;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #1a1740;
+            padding: 10px 30px;
+            border-radius: 40px;
+            border: 2px solid #ff3366;
+        }
+        
+        /* Typing */
+        .typing {
+            color: #ff3366;
+            font-style: italic;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <!-- Header -->
+        <div class="chat-header">
+            <div class="profile-emoji">🥰</div>
+            <div class="header-info">
+                <h1>
+                    Gojo Sensei 
+                    <i class="fas fa-crown"></i>
+                    <span class="badge">1000+ Tips</span>
+                </h1>
+                <div class="status">
+                    <span class="status-dot"></span>
+                    <span>Online · Siap bantu lo dapet cewek</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Chat Messages -->
+        <div class="chat-messages" id="messageArea"></div>
+        
+        <!-- Input Area -->
+        <div class="input-area">
+            <input type="text" id="userInput" placeholder="Ketik pesan...">
+            <button id="sendBtn"><i class="fas fa-paper-plane"></i></button>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <a href="https://tiktok.com/@andriftgg_" target="_blank">
+                <i class="fab fa-tiktok"></i> @andriftgg_
+            </a>
+        </div>
+    </div>
+    
+    <script>
+        // ========== VERSION PALING SEDERHANA ==========
+        // LANGSUNG EKSEKUSI, GA PAKE RUMIT
+        
+        // Ambil element
+        const messageArea = document.getElementById('messageArea');
+        const userInput = document.getElementById('userInput');
+        const sendBtn = document.getElementById('sendBtn');
+        
+        // State
+        let sudahFollow = false;
+        
+        // Database tips
+        const tips = [
+            "Jadi diri sendiri, jangan jadi orang lain",
+            "Dengerin dia dengan hati",
+            "Bikin dia ketawa, humor itu kunci",
+            "Jangan terlalu agresif, slow burn aja",
+            "Punya tujuan hidup yang jelas",
+            "Jaga penampilan, wangi itu wajib",
+            "Pelajari love language dia",
+            "Percaya diri, tapi jangan sombong",
+            "Bisa masak? itu nilai plus",
+            "Setia itu harga mati",
+            "Punya prinsip dan pendirian",
+            "Kasih ruang, jangan nempel terus",
+            "Peka sama mood dia",
+            "Jaga omongan, jangan kasar",
+            "Punya inisiatif, jangan disuruh dulu",
+            "Bisa baca situasi",
+            "Punya wawasan luas",
+            "Jangan pelit, tapi jangan royal di awal",
+            "Perhatian sama hal kecil",
+            "Punya circle pertemanan yang baik",
+            "Bisa handle konflik",
+            "Punya selera humor yang oke",
+            "Balas kebaikan dia",
+            "Jadi tempat curhat yang aman",
+            "Punya skill spesial",
+            "Jangan ngebandingin dia sama mantan",
+            "Hormati orang tua dia",
+            "Jaga jarak sama cewek lain",
+            "Sikap gentleman",
+            "Punya tabungan",
+            "Balance antara serius dan bercanda",
+            "Jangan ngatur-ngatur",
+            "Punya prinsip kuat",
+            "Bisa memimpin",
+            "Trust itu foundation",
+            "Punya selera fashion oke",
+            "Jangan ghosting",
+            "Terima kritik dengan baik",
+            "Punya mimpi besar",
+            "Jangan suka ngeluh",
+            "Bisa kompromi",
+            "Punya empati",
+            "Hargai apapun hobi dia",
+            "Punya sense of adventure",
+            "Jaga rahasia dia",
+            "Bela dia kalo direndahin",
+            "Inget hal-hal kecil tentang dia",
+            "Bisa masakin dia",
+            "Jemput dia kalo ujan",
+            "Kasih kejutan kecil"
+        ];
+        
+        // Fungsi random tips
+        function getRandomTips() {
+            let result = [];
+            for (let i = 0; i < 5; i++) {
+                let randomIndex = Math.floor(Math.random() * tips.length);
+                result.push(tips[randomIndex]);
+            }
+            return result;
+        }
+        
+        // Fungsi format tips
+        function formatTips() {
+            let tipsArray = getRandomTips();
+            let html = '<div class="tips-box"><div class="tips-title"><i class="fas fa-lightbulb"></i> 1000 CARA DITERIMA CEWEK <i class="fas fa-heart" style="color: #ff3366;"></i></div>';
+            
+            tipsArray.forEach((tip, index) => {
+                html += `<div class="tip-item">${index+1}. ${tip}</div>`;
+            });
+            
+            html += '<p style="color: #aaa; text-align: center; margin-top: 10px;">✨ Masih ada 995+ cara lainnya ✨</p></div>';
+            return html;
+        }
+        
+        // Fungsi bunga
+        function getFlowers() {
+            return '<div class="flower-box"><span class="flower">🌸</span><span class="flower">🌼</span><span class="flower">🌻</span><span class="flower">🌺</span><span class="flower">🌷</span></div>';
+        }
+        
+        // Fungsi nambah pesan
+        function addMessage(sender, text, isHTML = false) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `message ${sender === 'gojo' ? 'gojo-message' : 'user-message'}`;
+            
+            const nameDiv = document.createElement('div');
+            nameDiv.className = 'sender-name';
+            nameDiv.innerHTML = sender === 'gojo' ? '🥰 Gojo Sensei' : 'Kamu';
+            
+            const textDiv = document.createElement('div');
+            if (isHTML) {
+                textDiv.innerHTML = text;
+            } else {
+                textDiv.textContent = text;
+            }
+            
+            msgDiv.appendChild(nameDiv);
+            msgDiv.appendChild(textDiv);
+            messageArea.appendChild(msgDiv);
+            
+            // Scroll ke bawah
+            messageArea.scrollTop = messageArea.scrollHeight;
+        }
+        
+        // Fungsi typing indicator
+        function showTyping() {
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'typing';
+            typingDiv.id = 'typing';
+            typingDiv.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Gojo lagi ngetik...';
+            messageArea.appendChild(typingDiv);
+            messageArea.scrollTop = messageArea.scrollHeight;
+        }
+        
+        function hideTyping() {
+            const typing = document.getElementById('typing');
+            if (typing) typing.remove();
+        }
+        
+        // Fungsi kirim pesan
+        function handleSendMessage() {
+            const text = userInput.value.trim();
+            
+            if (text === '') {
+                alert('Isi dulu pesan lo!');
+                return;
+            }
+            
+            // Tampilkan pesan user
+            addMessage('user', text);
+            
+            // Kosongin input
+            userInput.value = '';
+            
+            // Simulasi loading
+            showTyping();
+            
+            // Respon setelah 1.5 detik
+            setTimeout(() => {
+                hideTyping();
+                
+                const lowerText = text.toLowerCase();
+                
+                // Logic percakapan
+                if (lowerText === 'halo') {
+                    addMessage('gojo', 'Halo juga! Saya Gojo 🥰');
+                    
+                    setTimeout(() => {
+                        showTyping();
+                        setTimeout(() => {
+                            hideTyping();
+                            addMessage('gojo', 'Saya punya 1000 cara diterima cewek. Tapi lo harus follow TikTok @andriftgg_ dulu!');
+                            
+                            setTimeout(() => {
+                                showTyping();
+                                setTimeout(() => {
+                                    hideTyping();
+                                    addMessage('gojo', 'Kalo udah follow, ketik "sudah" ya! 😘');
+                                }, 1500);
+                            }, 1000);
+                        }, 1500);
+                    }, 1000);
+                }
+                else if (lowerText === 'sudah') {
+                    if (!sudahFollow) {
+                        addMessage('gojo', 'Nih gue kasih sample 1000 cara:');
+                        addMessage('gojo', formatTips(), true);
+                        
+                        setTimeout(() => {
+                            addMessage('gojo', getFlowers(), true);
+                            addMessage('gojo', 'Semoga membantu! Jangan lupa praktikin 🥰');
+                        }, 500);
+                        
+                        sudahFollow = true;
+                    } else {
+                        addMessage('gojo', 'Lo udah minta tips tadi. Mau tips lain? Ketik "lagi" aja');
+                    }
+                }
+                else if (lowerText === 'lagi' || lowerText.includes('tips')) {
+                    if (sudahFollow) {
+                        addMessage('gojo', 'Nih tips tambahan:');
+                        addMessage('gojo', formatTips(), true);
+                        addMessage('gojo', getFlowers(), true);
+                    } else {
+                        addMessage('gojo', 'Follow dulu baru bisa minta tips!');
+                    }
+                }
+                else if (lowerText.includes('makasih') || lowerText.includes('thanks')) {
+                    addMessage('gojo', 'Sama-sama! Semoga cepet dapet jodoh 🥰');
+                    addMessage('gojo', getFlowers(), true);
+                }
+                else {
+                    addMessage('gojo', 'Halo juga! Gue Gojo 🥰. Ketik "halo" buat mulai atau "sudah" kalo udah follow TikTok');
+                }
+                
+            }, 1500);
+        }
+        
+        // Load pesan awal
+        function loadInitialMessages() {
+            // Cek apakah ada data di localStorage
+            const saved = localStorage.getItem('gojoChatSimple');
+            
+            if (saved) {
+                messageArea.innerHTML = saved;
+                if (saved.includes('tips-box')) sudahFollow = true;
+            } else {
+                // Pesan pembuka
+                setTimeout(() => {
+                    showTyping();
+                    
+                    setTimeout(() => {
+                        hideTyping();
+                        addMessage('gojo', 'Halo! Saya Gojo 🥰');
+                        
+                        setTimeout(() => {
+                            showTyping();
+                            setTimeout(() => {
+                                hideTyping();
+                                addMessage('gojo', 'Saya menyediakan 1000 cara diterima cewek. Kalau mau, lu harus follow akun TikTok @andriftgg_ dulu!');
+                                
+                                setTimeout(() => {
+                                    showTyping();
+                                    setTimeout(() => {
+                                        hideTyping();
+                                        addMessage('gojo', 'Kalo udah follow, ketik "sudah" ya! 😘');
+                                    }, 2000);
+                                }, 1500);
+                            }, 2000);
+                        }, 1500);
+                    }, 2000);
+                }, 1000);
+            }
+        }
+        
+        // Simpan pesan ke localStorage setiap kali ada perubahan
+        function saveMessages() {
+            localStorage.setItem('gojoChatSimple', messageArea.innerHTML);
+        }
+        
+        // Override fungsi addMessage untuk auto-save
+        const originalAddMessage = addMessage;
+        addMessage = function(sender, text, isHTML) {
+            originalAddMessage(sender, text, isHTML);
+            saveMessages();
+        };
+        
+        // Event listeners
+        sendBtn.addEventListener('click', handleSendMessage);
+        
+        userInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                handleSendMessage();
+            }
+        });
+        
+        // Load messages
+        loadInitialMessages();
+        
+        // Reset dengan tombol R
+        window.addEventListener('keydown', function(e) {
+            if (e.key === 'r' || e.key === 'R') {
+                if (confirm('Reset chat?')) {
+                    localStorage.removeItem('gojoChatSimple');
+                    messageArea.innerHTML = '';
+                    sudahFollow = false;
+                    loadInitialMessages();
+                }
+            }
+        });
+        
+        // ========== INI VERSI PALING SEDERHANA ==========
+        // GA PAKE RIBET, PASTI JALAN DI SPCK & CHROME
+        // KALO MASIH ERROR, BERARTI LU YANG GOBLOK
+        
+    </script>
+</body>
+</html>
